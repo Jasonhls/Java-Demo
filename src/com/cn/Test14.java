@@ -28,6 +28,6 @@ public class Test14 {
             }
             sb.append(arr[i]).append("\n");
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 }

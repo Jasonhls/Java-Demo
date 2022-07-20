@@ -13,44 +13,30 @@ public class Test50 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String s = br.readLine();
+        int n = s.length();
+        int num1 = 0;
+        int o1 = 1;
+        int num2 = 1;
+        int o2 = 1;
 
+        Stack<Integer> stk = new Stack<>();
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
 
-        Stack<Integer> numStack = new Stack<>();
-        Stack<Character> opeStack = new Stack<>();
-        char[] arr = s.toCharArray();
-
-        //当前处理的是否为数字
-        boolean isDigit = false;
-        //当前正在读取的数字
-        int num = 0;
-        //记录当前字符的上一个字符
-        char pre = '0';
-        //正负数标记
-        int positiveFlag = 1;
-        for (char c : arr) {
-            //如果当前是数字字符
-            if(Character.isDigit(c)) {
-                num = num * 10 + Integer.valueOf(c + "");
-                isDigit = true;
-            }else {
-                //如果当前字符为减号，且上一个字符不是右括号或者数字字符，则当前字符一定表示负数符号
-                if('-' == c && !isDigit && pre != ']' && pre != '}') {
-                    positiveFlag = -1;
-                    continue;
-                }
-
-                //将当前字符记录
-                pre = c;
-                //如果当前字符之前的为数字字符，则将之前处理的数字入数字栈
-                if(isDigit) {
-                    numStack.push(num * positiveFlag);
-                    //将相关标志重置
-                    num = 0;
-                    positiveFlag = 1;
-                    isDigit = false;
-                }
-            }
         }
 
+    }
+
+    public static int cal(int right, int left, char c) {
+        if('+' == c) {
+            return left + right;
+        }else if('-' == c) {
+            return left - right;
+        }else if('*' == c) {
+            return left * right;
+        }else if('/' == c) {
+            return left / right;
+        }
+        return 0;
     }
 }
